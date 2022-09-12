@@ -1,6 +1,10 @@
 package Tree;
 
 import Cadastro.Cadastro;
+import Cadastro.NomeCompleto;
+
+import java.util.Collections;
+import java.util.Objects;
 
 public class ArvoreAVL {
 
@@ -18,6 +22,7 @@ public class ArvoreAVL {
         this.raiz = null;
     }
 
+    // Insere pelo Nome do cadastro
     public static No insereNo (No no, Cadastro cadastro){
         if (no == null){
             return new No(cadastro);
@@ -62,7 +67,6 @@ public class ArvoreAVL {
 
     public static No balancearArvore(No n) {
         int fb = n.FB();
-
         if (fb > 1){
             int fbDir = n.getDir().FB();
             if (fbDir >= 0){
@@ -145,6 +149,84 @@ public class ArvoreAVL {
             System.out.println(" "+ n.getCadastro().getNomeCompleto().toString());
             mostraEmOrdem(n.getDir());
         }
+    }
+
+    // Busca pelo Nome e categoria
+    public static No buscaBinaria(No no, NomeCompleto nome, int categoria){
+        if (no != null){
+            int categoriaNo = Collections.min(no.getCadastro().getCategorias());
+            NomeCompleto nomeNo = no.getCadastro().getNomeCompleto();
+            // Caso seja uma busca correta, retona o no encontrado
+            if(nomeNo.compareTo(nome) == 0 && no.getCadastro().getCategorias().contains(categoria)){
+                System.out.println("Yeay " + no.getCadastro().getNomeCompleto().toString());
+                return no;
+            }
+            // Primeiro verificamos se a categoria é maior ou menor que a selecionada e buscamos os galhos correspondentes
+            if (categoriaNo < categoria){
+                System.out.println(no.getCadastro().getNomeCompleto().toString());
+                return buscaBinaria(no.getDir(), nome, categoria);
+            } else if (categoriaNo > categoria){
+                System.out.println(no.getCadastro().getNomeCompleto().toString());
+                return buscaBinaria(no.getEsq(), nome, categoria);
+            } else{
+                // Assim que chegarmos nos galhos com a categoria correta procuramos a procurar pelo nome
+                if(nomeNo.compareTo(nome) < 0){
+                    System.out.println(no.getCadastro().getNomeCompleto().toString());
+                    return buscaBinaria(no.getDir(), nome, categoria);
+                } else{
+                    System.out.println(no.getCadastro().getNomeCompleto().toString());
+                    return buscaBinaria(no.getEsq(), nome, categoria);
+                }
+            }
+        } else{
+            return null;
+        }
+    }
+
+    // Remove um No pelo Nome
+    public static No RemoveNo(No no, Cadastro cadastro){
+        if (no != null){
+            // Caso seja uma busca correta, retona o no encontrado
+            if(Objects.equals(cadastro, no.getCadastro())){
+                if (no.getDir() == null && no.getEsq() == null){
+                    return null;
+                }
+                if (no.getEsq() == null){
+                    return no.getDir();
+                } else if (no.getDir() == null){
+                    return no.getEsq();
+                } else{
+                    No aux, ref;
+                    ref = no.getDir();
+                    aux = no.getDir();
+                    while (aux.getEsq() != null){
+                        aux = aux.getEsq();
+                    }
+                    aux.setEsq(no.getEsq());
+                    return ref;
+                }
+            }
+            // Como na Busca Primeiro verificamos se a categoria é maior ou menor que a selecionada e buscamos os galhos correspondentes
+            int categoriaNo = Collections.min(no.getCadastro().getCategorias());
+            int categoriaApaga = Collections.min(cadastro.getCategorias());
+            NomeCompleto nomeNo = no.getCadastro().getNomeCompleto();
+            NomeCompleto nomeApaga = cadastro.getNomeCompleto();
+
+            if (categoriaNo < categoriaApaga){
+                no.setDir(RemoveNo(no.getDir(), cadastro));
+            } else if (categoriaNo > categoriaApaga){
+                no.setEsq(RemoveNo(no.getEsq(), cadastro));
+            } else{
+                // Assim que chegarmos nos galhos com a categoria correta procuramos a procurar pelo nome
+                if(nomeNo.compareTo(nomeApaga) < 0){
+                    no.setDir(RemoveNo(no.getDir(), cadastro));
+                } else{
+                    no.setEsq(RemoveNo(no.getEsq(), cadastro));
+                }
+            }
+        }
+        return no;
+
     }
 
 }

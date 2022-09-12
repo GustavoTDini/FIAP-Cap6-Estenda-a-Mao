@@ -14,8 +14,11 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Populate {
+
+    static Random random = new Random();
+
+
     public static ArrayList<Cadastro> createFakeList(String filename){
-        Random random = new Random();
         String line = "";
         String splitBy = ",";
         // Separaremos a lista em 5 para fazer os cadastros diferentes
@@ -30,7 +33,6 @@ public class Populate {
                 String[] valoresFake = line.split(splitBy);
                 // Recupera os valores do nome e cria os atributos basico de um cadastro
                 // NomeCompleto para ser populado
-                System.out.println(Arrays.asList(valoresFake));
                 String primeiroNome = valoresFake[1];
                 String nomesDoMeio = valoresFake[2] + ". " + valoresFake[8];
                 String ultimoNome = valoresFake[3];
@@ -93,19 +95,19 @@ public class Populate {
         catch(IOException e) {
             e.printStackTrace();
         }
+        // Adiciona as categorias a mais dos cadastros
+        lista = generateCategorias(lista);
         return lista;
     }
 
-    public static LocalDate randomDate(int startYear){
-        Random random = new Random();
+    private static LocalDate randomDate(int startYear){
         int minDay = (int) LocalDate.of(startYear, 1, 1).toEpochDay();
         int maxDay = (int) LocalDate.of(2022, 1, 1).toEpochDay();
         long randomDay = minDay + random.nextInt(maxDay - minDay);
-
         return LocalDate.ofEpochDay(randomDay);
     }
 
-    public static int checkFileLines(String filename) throws IOException {
+    private static int checkFileLines(String filename) throws IOException {
         BufferedReader file = new BufferedReader(new FileReader("src/" + filename + ".csv"));
         int count = 0;
         while(file.readLine() != null){
@@ -114,7 +116,7 @@ public class Populate {
         return count;
     }
 
-    public static char getGender(String gender) {
+    private static char getGender(String gender) {
         if (gender.equals("male")){
             return 'm';
         } else if (gender.equals("female")){
@@ -123,6 +125,15 @@ public class Populate {
             return 'x';
         }
     }
+    private static ArrayList<Cadastro> generateCategorias(ArrayList<Cadastro> lista){
+        for (int i = 0; i < 5000;i++ ){
+            int cadastro = random.nextInt(20000);
+            int categoria = random.nextInt(5 - 1) + 1;
+            lista.get(cadastro).setCategorias(categoria);
+        }
+        return lista;
+    }
+
 
     }
 

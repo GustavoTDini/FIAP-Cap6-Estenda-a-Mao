@@ -301,8 +301,7 @@ public class Cadastro implements Comparable<Cadastro>{
     // Metodo que irá validar a entrada de CPF, realizando o algoritmo disponivel do Governo, para este fim
     public boolean isCpf(String cpf) {
         // Retira os caracteres que não farão parte da validação
-        cpf = cpf.replace(".", "");
-        cpf = cpf.replace("-", "");
+        cpf = cpf.replace(".", "").replace("-", "");
         /*A primeira validação será verificar se o cpf fornecido é um que possui dígitos iguais ou se ele tem tamanho superior a 11*/
         if(cpf.equals("00000000000")||cpf.equals("11111111111")||cpf.equals("22222222222")||cpf.equals("33333333333")
                 ||cpf.equals("44444444444")||cpf.equals("55555555555")||cpf.equals("66666666666")||cpf.equals("77777777777")
@@ -384,12 +383,7 @@ public class Cadastro implements Comparable<Cadastro>{
         if (comparacaoCategorias !=0){
             return comparacaoCategorias;
         }
-        Locale brasil = new Locale("Pt-br");
-        Collator collator =Collator.getInstance(brasil);
-        collator.setStrength(Collator.SECONDARY);
-        String nomeCadastro = this.getNomeCompleto().toString().replace(" ", "");
-        String nomeCadastrocompara = cadastroComparado.getNomeCompleto().toString().replace(" ", "");
-        return collator.compare(nomeCadastro, nomeCadastrocompara);
+        return nomeCompleto.compareTo(cadastroComparado.getNomeCompleto());
     }
 
     private int comparaCategorias(ArrayList<Integer> categorias, ArrayList<Integer> categoriasCompara){

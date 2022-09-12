@@ -1,8 +1,10 @@
 package Cadastro;
 
+import java.text.Collator;
+import java.util.Locale;
 import java.util.UUID;
 
-public class NomeCompleto {
+public class NomeCompleto implements Comparable<NomeCompleto>{
     private final UUID _idNome = UUID.randomUUID();
     private String primeiroNome;
     private String nomesDoMeio;
@@ -45,5 +47,15 @@ public class NomeCompleto {
     @Override
     public String toString() {
         return this.primeiroNome + " " + this.nomesDoMeio + " " + this.ultimoNome;
+    }
+
+    @Override
+    public int compareTo(NomeCompleto nome) {
+        Locale brasil = new Locale("pt-BR");
+        Collator collator =Collator.getInstance(brasil);
+        collator.setStrength(Collator.SECONDARY);
+        String nomeCadastro = this.toString().replace(" ", "").replace(".", "");
+        String nomeCadastrocompara = nome.toString().replace(" ", "").replace(".", "");
+        return collator.compare(nomeCadastro, nomeCadastrocompara);
     }
 }
