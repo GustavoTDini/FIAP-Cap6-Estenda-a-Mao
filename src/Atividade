@@ -1,0 +1,47 @@
+A organização sem fins lucrativos “Estenda a Mão” decidiu digitalizar seus processos. Um deles é o cadastramento das
+pessoas envolvidas em suas atividades. Esse processo é feito, inicialmente, em papel, por meio de uma ficha cadastral.
+
+Em seguida, quando sobrava tempo entre várias atividades realizadas, alguns voluntários passavam as informações do papel
+para uma planilha de Excel, salva no computador gestor da organização.
+
+No entanto, eles perderam o controle do que já foi feito e quais papéis podem ser descartados, até porque perceberam que
+há três arquivos com informações dessa natureza. Sendo assim, decidiram, juntamente com o gestor da organização, fazer
+um Sistema de Cadastramento dessas pessoas para resolver de vez esse problema. Ufa! Chega de retrabalho!
+
+Nessa direção, decidiram:
+
+1. Fazer o cadastro das pessoas para a ONG. (recomendamos em JAVA, mas Python também é uma opção caso queira), separando
+ os envolvidos em cinco categorias (atributos do registro): Funcionários, Voluntários, Doadores, Atendidos e Visitantes.
+Uma pessoa pode pertencer a mais de uma categoria, no entanto, os Atendidos não podem ser doadores ou funcionários.
+
+Observação
+
+Os dados solicitados são: nome completo, data de nascimento, contato telefônico e/ou e-mail para todos os cadastrados.
+Acrescente de 3 a 5 informações que julgue ser relevantes para cada categoria. Exemplo: Atendidos - CPF, RG,
+renda familiar, número de filhos, nome e idade de cada filho, se o filho frequenta escola, se desempregado, quanto tempo
+desde o último emprego formal, etc.
+
+2. Ao fazer isso, você deve implementar métodos de busca desses cadastros dentro de um
+Array ou lista usando recursão/ laço;
+
+3. Armazenar os dados em uma AVL, ordenado pelo nome e categoria, a fim de permitir a consulta de uma determinada pessoa.
+Assim, sempre que realizar a busca na AVL (pelo nome), contar e apresentar quantas comparações foram necessárias, ou seja,
+ao buscar as pessoas de uma categoria específica, uma lista de nomes em ordem alfabética deve ser gerada (percurso de árvore).
+
+4. Ordenar o arquivo de registros (usando algum método de ordenação) para que os primeiros registros em um dia de
+atividade sejam os primeiros a serem atendidos. Portanto, o critério de ordenação deve ser: colocar nas primeiras
+posições do Array os registros dos atendidos e, em ordem crescente, uma das informações que foi colocada como
+relevante no item 1.
+
+5. Com a análise de desempenho do seu algoritmo (arquivo de registro gerado no VisualVM – conteúdo extra), faça uma
+análise estatística sobre esses dados que envolva o tempo de execução, a relação entre precisão e exatidão, o uso do
+hardware/memória e o número de operações. Com esses dados em mãos, conclua com uma análise comparativa simples, ou seja,
+sua máquina comparada com a de outro(a) colega de curso. É necessário que você descreva cada máquina para verificar
+se a mudança na arquitetura de hardware interfere na execução do seu software e o quanto afeta. Para essa comparação e
+análise, é preciso isolar alguma variável: memória; processador; sistema operacional.
+
+Quando a atividade estiver pronta, você vai precisar entregar o projeto que criou no Eclipse ou outra IDE. Para isso,
+exporte o projeto no formado zip. Além disso, há a entrega de um documento da análise de desempenho e
+estatística comparativa.
+Além da documentação .zip, submeta também um vídeo curto demonstrando brevemente o funcionamento do seu projeto.
+Em caso de dúvidas, procure-nos nos canais oficiais de comunicação. Boa atividade!
