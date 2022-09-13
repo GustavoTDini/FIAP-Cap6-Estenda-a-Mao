@@ -147,34 +147,50 @@ public class ArvoreAVL {
         }
     }
 
+    // Função para mostra apenas a subArvore mais á esquerda da árvore, desse modo, mostramos em ordem apenas os primeiros 2^(altura+1) -1 elementos da árvore
+    public static void mostraEmOrdemEmParte(No n, int altura){
+        if (n!= null){
+            if (n.getH_esq() > altura){
+                mostraEmOrdemEmParte(n.getEsq(), altura);
+            } else{
+                mostraEmOrdem(n);
+            }
+        }
+    }
+
     // Busca pelo Nome e categoria
-    public static No buscaBinaria(No no, NomeCompleto nome, int categoria){
+    public static No buscaBinaria(No no, NomeCompleto nome, int categoria, int passos){
         if (no != null){
             int categoriaNo = Collections.min(no.getCadastro().getCategorias());
             NomeCompleto nomeNo = no.getCadastro().getNomeCompleto();
             // Caso seja uma busca correta, retona o no encontrado
             if(nomeNo.compareTo(nome) == 0 && no.getCadastro().getCategorias().contains(categoria)){
-                System.out.println("Yeay " + no.getCadastro().getNomeCompleto().toString());
+                System.out.println("Finalizada a Busca em " + passos + " passos!");
                 return no;
             }
             // Primeiro verificamos se a categoria é maior ou menor que a selecionada e buscamos os galhos correspondentes
             if (categoriaNo < categoria){
                 System.out.println(no.getCadastro().getNomeCompleto().toString());
-                return buscaBinaria(no.getDir(), nome, categoria);
+                passos++;
+                return buscaBinaria(no.getDir(), nome, categoria, passos);
             } else if (categoriaNo > categoria){
                 System.out.println(no.getCadastro().getNomeCompleto().toString());
-                return buscaBinaria(no.getEsq(), nome, categoria);
+                passos++;
+                return buscaBinaria(no.getEsq(), nome, categoria, passos);
             } else{
                 // Assim que chegarmos nos galhos com a categoria correta procuramos a procurar pelo nome
                 if(nomeNo.compareTo(nome) < 0){
                     System.out.println(no.getCadastro().getNomeCompleto().toString());
-                    return buscaBinaria(no.getDir(), nome, categoria);
+                    passos++;
+                    return buscaBinaria(no.getDir(), nome, categoria, passos);
                 } else{
                     System.out.println(no.getCadastro().getNomeCompleto().toString());
-                    return buscaBinaria(no.getEsq(), nome, categoria);
+                    passos++;
+                    return buscaBinaria(no.getEsq(), nome, categoria, passos);
                 }
             }
         } else{
+            System.out.println("Não encontrado cadastro após " + passos + " passos!");
             return null;
         }
     }

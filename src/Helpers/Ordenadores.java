@@ -3,15 +3,12 @@ package Helpers;
 import Cadastro.Cadastro;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
 
 public class Ordenadores {
 
     public static final int POR_PRIORIDADE = 110011;
-    public static final int POR_NOME = 110011;
-    public static final int POR_NOME_E_CATEGORIA = 110011;
+    public static final int POR_NOME = 110111;
+    public static final int POR_NOME_E_CATEGORIA = 111111;
 
     private final ArrayList<Cadastro> listaAOrdenar;
     private final int ordem;
@@ -91,9 +88,18 @@ public class Ordenadores {
         }
     }
 
-    public static void mostraLista(ArrayList<Cadastro> lista){
-        for (Cadastro cadastro : lista) {
-            System.out.println(cadastro.toString());
+    public static void mostraLista(ArrayList<Cadastro> lista, int tamanho, int ordem){
+        if (tamanho == 0){
+            tamanho = lista.size();
+        }
+        for (int i = 0; i < tamanho; i++) {
+            switch (ordem){
+                case POR_NOME -> System.out.println(lista.get(i).getNomeCompleto().toString());
+                case POR_PRIORIDADE -> System.out.println(lista.get(i).mostraNomeERenda());
+                case POR_NOME_E_CATEGORIA -> System.out.println(lista.get(i).mostraNomeECategorias());
+                default -> System.out.println(lista.get(i).toString());
+            }
+
         }
     }
 }

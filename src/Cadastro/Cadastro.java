@@ -407,4 +407,18 @@ public class Cadastro implements Comparable<Cadastro>{
             return cadastro.compareTo(cadastroCompara);
         }
     }
+
+    public String mostraNomeERenda(){
+        return nomeCompleto.toString() + " Renda média: " + rendaPorFilhos();
+    }
+
+    public String mostraNomeECategorias(){
+        StringBuilder result = new StringBuilder("Categorias: ");
+        for (Integer categoria: categorias){
+            result.append(categorias.get(categoria));
+        }
+        result.append(" Nome: ");
+        result.append(nomeCompleto.toString());
+        return result.toString();
+    }
 }
