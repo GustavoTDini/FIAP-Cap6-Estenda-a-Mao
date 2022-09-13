@@ -51,6 +51,7 @@ public class NomeCompleto implements Comparable<NomeCompleto>{
 
     @Override
     public int compareTo(NomeCompleto nome) {
+        // Para fazer a comparação considerando os acentos da lingua portuguesa
         Locale brasil = new Locale("pt-BR");
         Collator collator =Collator.getInstance(brasil);
         collator.setStrength(Collator.SECONDARY);

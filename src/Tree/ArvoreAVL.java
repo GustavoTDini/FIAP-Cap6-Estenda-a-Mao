@@ -69,20 +69,16 @@ public class ArvoreAVL {
         int fb = n.FB();
         if (fb > 1){
             int fbDir = n.getDir().FB();
-            if (fbDir >= 0){
-                n = rotacaoEsquerda(n);
-            } else {
+            if (fbDir < 0) {
                 n.setDir(rotacaoDireita(n.getDir()));
-                n = rotacaoEsquerda(n);
             }
+            n = rotacaoEsquerda(n);
         } else if (fb < -1){
             int fbEsq = n.getEsq().FB();
-            if (fbEsq <= 0){
-                n = rotacaoDireita(n);
-            } else {
+            if (fbEsq > 0) {
                 n.setEsq(rotacaoEsquerda(n.getEsq()));
-                n = rotacaoDireita(n);
             }
+            n = rotacaoDireita(n);
         }
         return n;
     }

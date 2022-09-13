@@ -378,7 +378,6 @@ public class Cadastro implements Comparable<Cadastro>{
 
     @Override
     public int compareTo(Cadastro cadastroComparado) {
-        // Para fazer a comparação considerando os acentos da lingua portuguesa
         int comparacaoCategorias = comparaCategorias(this.categorias, cadastroComparado.getCategorias());
         if (comparacaoCategorias !=0){
             return comparacaoCategorias;
@@ -388,5 +387,24 @@ public class Cadastro implements Comparable<Cadastro>{
 
     private int comparaCategorias(ArrayList<Integer> categorias, ArrayList<Integer> categoriasCompara){
         return Collections.min(categorias) - Collections.min(categoriasCompara);
+    }
+
+    public float rendaPorFilhos(){
+        float result = rendaFamiliar/(numeroFilhos + 1);
+        if (!isComEmprego()){
+            result/=2;
+        }
+        return result;
+    }
+
+    public static int definirPrioridades(Cadastro cadastro, Cadastro cadastroCompara){
+        ArrayList<Integer> categoriasCadastro = cadastro.getCategorias();
+        ArrayList<Integer> categoriasCadastroCompara = cadastroCompara.getCategorias();
+        int atendido = getAtendido().get_idCategoria();
+        if(categoriasCadastro.contains(atendido) && categoriasCadastroCompara.contains(atendido)){
+            return (int) Float.min(cadastro.rendaPorFilhos(), cadastroCompara.rendaPorFilhos());
+        } else {
+            return cadastro.compareTo(cadastroCompara);
+        }
     }
 }

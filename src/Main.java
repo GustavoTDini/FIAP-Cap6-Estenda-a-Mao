@@ -1,4 +1,5 @@
 import Cadastro.Cadastro;
+import Helpers.Ordenadores;
 import Helpers.Populate;
 import Tree.ArvoreAVL;
 import Tree.No;
@@ -21,7 +22,6 @@ public class Main {
         ArvoreAVL.mostraEmOrdem(arvore.getRaiz());
         System.out.println(arvore.alturaMaxima(arvore.getRaiz()));
         Cadastro testeBusca = cadastros.get(500);
-        System.out.println(testeBusca.getNomeCompleto().compareTo(testeBusca.getNomeCompleto()));
         System.out.println("Teste: " + testeBusca.getNomeCompleto().toString());
         No busca = ArvoreAVL.buscaBinaria(arvore.getRaiz(), testeBusca.getNomeCompleto(), Collections.min(testeBusca.getCategorias()));
         if (busca == null){
@@ -36,6 +36,23 @@ public class Main {
         } else{
             System.out.println("Busca: " + busca.getCadastro().getNomeCompleto().toString());
         }
+        Ordenadores.mostraLista(cadastros);
+
+        ArrayList<Integer> unsortedArray = new ArrayList<Integer>();
+
+        unsortedArray.add(8);
+        unsortedArray.add(7);
+        unsortedArray.add(6);
+        unsortedArray.add(5);
+        unsortedArray.add(4);
+        unsortedArray.add(0);
+        unsortedArray.add(2);
+        Ordenadores ordenadorPrioridade = new Ordenadores(cadastros, Ordenadores.POR_PRIORIDADE);
+
+        ordenadorPrioridade.ordenar();
+
+        System.out.println(cadastros);
+        Ordenadores.mostraLista(ordenadorPrioridade.getListaAOrdenar());
         //Tree.ArvoreAVL.mostra2d(arvore.getRaiz(), 0);
     }
 }

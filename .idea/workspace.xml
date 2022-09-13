@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abe869aa-9fae-416e-991c-ba1cc402f3a9" name="Changes" comment="First Commit">
+    <list default="true" id="abe869aa-9fae-416e-991c-ba1cc402f3a9" name="Changes" comment="Finish BST">
+      <change afterPath="$PROJECT_DIR$/src/Helpers/Ordenadores.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cadastro/Cadastro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cadastro/Cadastro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cadastro/NomeCompleto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cadastro/NomeCompleto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Helpers/Populate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/Populate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tree/ArvoreAVL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree/ArvoreAVL.java" afterDir="false" />
     </list>
@@ -81,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662935286679</updated>
-      <workItem from="1662935287869" duration="15141000" />
+      <workItem from="1662935287869" duration="27464000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1662949379796</created>
@@ -90,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662949379796</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Finish BST">
+      <created>1662961778773</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1662961778773</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,6 +116,21 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Commit" />
+    <MESSAGE value="Finish BST" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish BST" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/FIAP_Cap6_Estenda_a_Mao$Main.ic" NAME="Main Coverage Results" MODIFIED="1663023023967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
