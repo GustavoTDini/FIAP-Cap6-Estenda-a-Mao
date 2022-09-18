@@ -10,32 +10,28 @@ import java.util.UUID;
 public class Cadastro implements Comparable<Cadastro>{
 
     private static Categorias atendido = new Categorias(1, "Atendido");
-    private static Categorias doadores = new Categorias(2, "Doadores");
-    private static Categorias voluntarios = new Categorias(3, "Voluntários");
-    private static Categorias visitantes = new Categorias(4, "Visitantes");
-    private static Categorias funcionarios = new Categorias(5, "Funcionários");
+    private static Categorias doadores = new Categorias(2, "Doador");
+    private static Categorias voluntarios = new Categorias(3, "Voluntário");
+    private static Categorias visitantes = new Categorias(4, "Visitante");
+    private static Categorias funcionarios = new Categorias(5, "Funcionário");
 
     public static Categorias getAtendido() {
         return atendido;
     }
-
     public static Categorias getDoador() {
         return doadores;
     }
-
     public static Categorias getVoluntario() {
         return voluntarios;
     }
-
     public static Categorias getVisitante() {
         return visitantes;
     }
-
     public static Categorias getFuncionario() {
         return funcionarios;
     }
 
-    public static int[] codigoCategorias= {atendido.get_idCategoria(), doadores.get_idCategoria(), voluntarios.get_idCategoria(), visitantes.get_idCategoria(), funcionarios.get_idCategoria()};
+    public static Categorias[] codigoCategorias= {atendido, doadores, voluntarios, visitantes, funcionarios};
 
     private UUID _idCadastro;
     private ArrayList<Integer> categorias;
@@ -209,16 +205,21 @@ public class Cadastro implements Comparable<Cadastro>{
         this._idCadastro = _idCadastro;
     }
 
-    // Para adicionar a categoria, verificamos se o atributo esta iniciado e adicionamos caso não exista a mesma
+    // Para adicionar a categoria, verificamos se o atributo está iniciado e adicionamos caso não exista a mesma
     public void setCategorias(Integer categoria) {
+        int atendidoId = atendido.get_idCategoria();
+        int doadorId = doadores.get_idCategoria();
+        int funcionarioID = funcionarios.get_idCategoria();
         if (categorias == null){
             categorias = new ArrayList<Integer>();
         }
-        // Verificamos se já existe para não terem duplicatas
-        if (!categorias.contains(categoria)){
+        // Verificamos se já existe para não terem duplicatas e se segue as orientações da fundação
+        if (!((categoria == atendidoId && (categorias.contains(doadorId) || categorias.contains(funcionarioID)))
+                || ((categoria == funcionarioID || categoria == doadorId) && categorias.contains(atendidoId)))){
             categorias.add(categoria);
         }
     }
+
 
     public void setNomeCompleto(NomeCompleto nomeCompleto) {
         this.nomeCompleto = nomeCompleto;
@@ -240,7 +241,7 @@ public class Cadastro implements Comparable<Cadastro>{
         this.email = email;
     }
 
-    // Verifica se o CPF é Valido com o respectivo metodo antes de adicionar
+    // Verifica se o CPF é Valido com o respetivo metodo antes de adicionar
     public void setCPF(String CPF) {
         if (isCpf(CPF)){
             this.CPF = CPF;
@@ -259,7 +260,7 @@ public class Cadastro implements Comparable<Cadastro>{
         this.horasSemana = horasSemana;
     }
 
-    // Para adicionar o telefone, verificamos se o atributo esta iniciado e adicionamos uma nova doação
+    // Para adicionar o telefone, verificamos se o atributo está iniciado e adicionamos uma nova doação
     public void setDoacoes(Doacoes doacao) {
         if (doacoes == null){
             doacoes = new ArrayList<Doacoes>();
@@ -314,7 +315,7 @@ public class Cadastro implements Comparable<Cadastro>{
         int valorCalculado=0, i, peso=10;
 
         for(i=0;i<9;i++) {
-            //O looping rodará uma vez para cada um dos 9 dígitos relevantes ao cálculo
+            //O ‘looping’ rodará uma vez para cada um dos 9 dígitos relevantes ao cálculo
             //Cada dígito será convertido em inteiro, multiplicado pelo peso e acumulado em valorCalculado
             valorCalculado+= ((int)cpf.charAt(i)-48) * peso;
             //Atendendo ao cálculo, a cada volta o peso diminui
@@ -415,9 +416,10 @@ public class Cadastro implements Comparable<Cadastro>{
     public String mostraNomeECategorias(){
         StringBuilder result = new StringBuilder("Categorias: ");
         for (Integer categoria: categorias){
-            result.append(categorias.get(categoria));
+            result.append(codigoCategorias[categoria-1].getNomeCategoria());
+            result.append(" ");
         }
-        result.append(" Nome: ");
+        result.append("Nome: ");
         result.append(nomeCompleto.toString());
         return result.toString();
     }

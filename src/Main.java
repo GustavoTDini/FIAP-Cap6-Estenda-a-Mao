@@ -70,7 +70,7 @@ public class Main {
         System.out.println("#################################################################################################");
         System.out.println("### Agora vamos reordenar o array pelo nome e categoria, que deverá ser semelhante a arvore   ###");
         System.out.println("#################################################################################################");
-        Ordenadores.mostraLista(ordenadorCategoria.getListaAOrdenar(), 10, Ordenadores.POR_NOME);
+        Ordenadores.mostraLista(ordenadorCategoria.getListaAOrdenar(), 10, Ordenadores.POR_NOME_E_CATEGORIA);
         //Tree.ArvoreAVL.mostra2d(arvore.getRaiz(), 0);
     }
 
