@@ -214,7 +214,7 @@ public class Cadastro implements Comparable<Cadastro>{
             categorias = new ArrayList<Integer>();
         }
         // Verificamos se já existe para não terem duplicatas e se segue as orientações da fundação
-        if (!((categoria == atendidoId && (categorias.contains(doadorId) || categorias.contains(funcionarioID)))
+        if (!categorias.contains(categoria) && !((categoria == atendidoId && (categorias.contains(doadorId) || categorias.contains(funcionarioID)))
                 || ((categoria == funcionarioID || categoria == doadorId) && categorias.contains(atendidoId)))){
             categorias.add(categoria);
         }
